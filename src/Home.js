@@ -1,8 +1,15 @@
+import { logout } from "./auth";
 
 function Home() {
 
     return (
-        <h1>Você foi logado com sucesso!</h1>
+        <div>
+            <h1>Você foi logado com sucesso!</h1>
+            <button onClick={() => {
+                logout();
+                window.location.reload();
+            }}>Logout</button>
+        </div>
     )
 }
 
