@@ -2,8 +2,11 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import api from "./api";
+import { login } from "./auth";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+    const history = useHistory();
 
     return (
         <div>
@@ -12,7 +15,10 @@ function Login() {
                 onSubmit={values => {
                     api
                         .post("/auth/token/", values)
-                        .then((res) => console.log('okay', res.data))
+                        .then((res) => {
+                            login(res.data.tokens.access);
+                            history.push("/");
+                        })
                         .catch((err) => console.log('erro', err))
                 }}
                 validationSchema={Yup.object().shape({

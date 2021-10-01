@@ -1,14 +1,23 @@
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
 import Login from './Login'
 import Home from './Home'
+import { isAuthenticated } from "./auth"
 
 function Routes() {
+
+    const PrivateRoute = props => isAuthenticated()
+        ? <Route {...props} />
+        : <Redirect to="/login" />
+
+    const PublicRoute = props => isAuthenticated()
+        ? <Redirect to="/" />
+        : <Route {...props} />
 
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/login" exact component={Login} />
+                <PublicRoute path="/login" component={Login} />
+                <PrivateRoute path="/" component={Home} />
             </Switch>
         </BrowserRouter>
     )
