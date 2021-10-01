@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
-import Login from './Login'
-import Home from './Home'
-import { isAuthenticated } from "./auth"
+import Login from './pages/Login'
+import Home from './pages/Home'
+import { isAuthenticated } from "./services/auth"
 
 function Routes() {
 
