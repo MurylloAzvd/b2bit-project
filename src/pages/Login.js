@@ -18,14 +18,14 @@ function Login() {
                         login(res.data.tokens.access);
                         history.push("/");
                     })
-                    .catch((err) => console.log('erro', err))
+                    .catch((err) => console.log(err))
             }}
             validationSchema={Yup.object().shape({
                 email: Yup.string()
                     .email('Campo inválido')
                     .required('Campo obrigatório'),
                 password: Yup.string()
-                    .min(6, 'Senha deve ter no mínimo 6 dígitos.')
+                    .min(6, 'Senha deve ter no mínimo 6 dígitos')
                     .required('Campo obrigatório'),
             })}
         >
